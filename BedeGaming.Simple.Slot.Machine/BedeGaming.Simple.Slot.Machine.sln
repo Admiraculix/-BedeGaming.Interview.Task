@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Application", "BedeGaming.SimpleSlotMachine.Application\BedeGaming.SimpleSlotMachine.Application.csproj", "{C4F04788-2F49-4930-8AF7-B0160C0868D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Domain", "BedeGaming.SimpleSlotMachine.Domain\BedeGaming.SimpleSlotMachine.Domain.csproj", "{98657031-10CA-4EF1-A70C-FF48AA515AD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{C4F04788-2F49-4930-8AF7-B0160C0868D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4F04788-2F49-4930-8AF7-B0160C0868D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4F04788-2F49-4930-8AF7-B0160C0868D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98657031-10CA-4EF1-A70C-FF48AA515AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98657031-10CA-4EF1-A70C-FF48AA515AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98657031-10CA-4EF1-A70C-FF48AA515AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98657031-10CA-4EF1-A70C-FF48AA515AD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{54DA95EE-FAF8-4FE0-9D14-2B36C672039B} = {76F967EA-8796-49FD-A2D6-CD78AEB71A40}
 		{97B2B0E9-2469-40E5-BEE8-468C9140A77E} = {C4B32596-82BF-4454-A456-0CAB4AC1B7BD}
 		{C4F04788-2F49-4930-8AF7-B0160C0868D4} = {A9DFC3E5-5779-4412-870B-26604CB318AE}
+		{98657031-10CA-4EF1-A70C-FF48AA515AD2} = {A9DFC3E5-5779-4412-870B-26604CB318AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {271B4863-19D8-4C67-AE35-56C292AA2464}
