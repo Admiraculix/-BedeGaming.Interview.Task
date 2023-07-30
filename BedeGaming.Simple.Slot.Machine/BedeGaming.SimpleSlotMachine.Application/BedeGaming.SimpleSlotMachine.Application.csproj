@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BedeGaming.SimpleSlotMachine.Domain\BedeGaming.SimpleSlotMachine.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
