@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{8E1C86BE-C06F-456C-8782-A570B500BB4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2E87B484-11C5-40C4-B95B-5E01ED4A7B6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{133ABA5A-B7F8-47EC-A703-82DD4843A4F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SimpleSlotMachine", "SimpleSlotMachine", "{B975AE75-71CE-481E-A8C0-1E343FFAAF8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A9DFC3E5-5779-4412-870B-26604CB318AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C4B32596-82BF-4454-A456-0CAB4AC1B7BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{1359B80C-7680-4ADA-827B-11923487C675}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{67950E3E-CE31-4228-AAF5-57571FCFA6F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SimpleSlotMachine", "SimpleSlotMachine", "{76F967EA-8796-49FD-A2D6-CD78AEB71A40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Tests.Unit", "BedeGaming.SimpleSlotMachine.Tests.Unit\BedeGaming.SimpleSlotMachine.Tests.Unit.csproj", "{00DC6976-7829-483B-B350-044BD590FE6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Tests.Integration", "BedeGaming.SimpleSlotMachine.Tests.Integration\BedeGaming.SimpleSlotMachine.Tests.Integration.csproj", "{6891861C-9D44-428D-86F7-47E408F0FED7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Tests.Architecture", "BedeGaming.SimpleSlotMachine.Tests.Architecture\BedeGaming.SimpleSlotMachine.Tests.Architecture.csproj", "{54DA95EE-FAF8-4FE0-9D14-2B36C672039B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.ConsoleGame", "BedeGaming.SimpleSlotMachine.ConsoleGame\BedeGaming.SimpleSlotMachine.ConsoleGame.csproj", "{97B2B0E9-2469-40E5-BEE8-468C9140A77E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Application", "BedeGaming.SimpleSlotMachine.Application\BedeGaming.SimpleSlotMachine.Application.csproj", "{C4F04788-2F49-4930-8AF7-B0160C0868D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00DC6976-7829-483B-B350-044BD590FE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00DC6976-7829-483B-B350-044BD590FE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00DC6976-7829-483B-B350-044BD590FE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00DC6976-7829-483B-B350-044BD590FE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6891861C-9D44-428D-86F7-47E408F0FED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6891861C-9D44-428D-86F7-47E408F0FED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6891861C-9D44-428D-86F7-47E408F0FED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6891861C-9D44-428D-86F7-47E408F0FED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54DA95EE-FAF8-4FE0-9D14-2B36C672039B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54DA95EE-FAF8-4FE0-9D14-2B36C672039B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54DA95EE-FAF8-4FE0-9D14-2B36C672039B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54DA95EE-FAF8-4FE0-9D14-2B36C672039B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97B2B0E9-2469-40E5-BEE8-468C9140A77E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97B2B0E9-2469-40E5-BEE8-468C9140A77E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97B2B0E9-2469-40E5-BEE8-468C9140A77E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97B2B0E9-2469-40E5-BEE8-468C9140A77E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F04788-2F49-4930-8AF7-B0160C0868D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F04788-2F49-4930-8AF7-B0160C0868D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F04788-2F49-4930-8AF7-B0160C0868D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F04788-2F49-4930-8AF7-B0160C0868D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{133ABA5A-B7F8-47EC-A703-82DD4843A4F8} = {8E1C86BE-C06F-456C-8782-A570B500BB4A}
+		{B975AE75-71CE-481E-A8C0-1E343FFAAF8B} = {133ABA5A-B7F8-47EC-A703-82DD4843A4F8}
+		{A9DFC3E5-5779-4412-870B-26604CB318AE} = {B975AE75-71CE-481E-A8C0-1E343FFAAF8B}
+		{C4B32596-82BF-4454-A456-0CAB4AC1B7BD} = {B975AE75-71CE-481E-A8C0-1E343FFAAF8B}
+		{1359B80C-7680-4ADA-827B-11923487C675} = {B975AE75-71CE-481E-A8C0-1E343FFAAF8B}
+		{67950E3E-CE31-4228-AAF5-57571FCFA6F5} = {2E87B484-11C5-40C4-B95B-5E01ED4A7B6D}
+		{76F967EA-8796-49FD-A2D6-CD78AEB71A40} = {67950E3E-CE31-4228-AAF5-57571FCFA6F5}
+		{00DC6976-7829-483B-B350-044BD590FE6F} = {76F967EA-8796-49FD-A2D6-CD78AEB71A40}
+		{6891861C-9D44-428D-86F7-47E408F0FED7} = {76F967EA-8796-49FD-A2D6-CD78AEB71A40}
+		{54DA95EE-FAF8-4FE0-9D14-2B36C672039B} = {76F967EA-8796-49FD-A2D6-CD78AEB71A40}
+		{97B2B0E9-2469-40E5-BEE8-468C9140A77E} = {C4B32596-82BF-4454-A456-0CAB4AC1B7BD}
+		{C4F04788-2F49-4930-8AF7-B0160C0868D4} = {A9DFC3E5-5779-4412-870B-26604CB318AE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {271B4863-19D8-4C67-AE35-56C292AA2464}
+	EndGlobalSection
+EndGlobal
