@@ -6,14 +6,14 @@ using BedeGaming.SimpleSlotMachine.Domain;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BedeGaming.SimpleSlotMachine.ConsoleGame
+namespace BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations
 {
     public static class DependencyConfig
     {
         public static ServiceProvider ConfigureDependencies(int deposit)
         {
             var configuration = new ConfigurationBuilder()
-                      .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                      .AddJsonFile(Path.Combine("Configurations", "appsettings.json"), optional: false, reloadOnChange: true)
                       .Build();
 
             var symbolsConfig = configuration.GetSection("Symbols").Get<List<Symbol>>();

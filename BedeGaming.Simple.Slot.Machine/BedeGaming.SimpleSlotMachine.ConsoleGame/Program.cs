@@ -1,4 +1,5 @@
 ﻿using BedeGaming.SimpleSlotMachine.Application.Interfaces;
+using BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BedeGaming.SimpleSlotMachine.ConsoleGame

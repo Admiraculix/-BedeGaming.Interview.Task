@@ -46,6 +46,8 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
 
             Console.WriteLine($"You won: {winAmount}, Current balance: {_balance}");
 
+            Console.Write("Please enter your stake amount: ");
+            stakeAmount = int.Parse(Console.ReadLine());
             Play(stakeAmount); // Play the next round
         }
 
