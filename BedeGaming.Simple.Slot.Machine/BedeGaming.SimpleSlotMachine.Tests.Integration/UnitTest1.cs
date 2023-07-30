@@ -5,7 +5,7 @@ namespace BedeGaming.SimpleSlotMachine.Tests.Integration
         [Fact]
         public void Test1()
         {
-
+            // Method intentionally left empty.
         }
     }
 }

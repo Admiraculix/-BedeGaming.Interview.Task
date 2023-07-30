@@ -12,17 +12,17 @@ namespace BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations
     {
         public static ServiceProvider ConfigureDependencies(int deposit)
         {
-            var configuration = new ConfigurationBuilder()
+            IConfigurationRoot configuration = new ConfigurationBuilder()
                       .AddJsonFile(Path.Combine("Configurations", "appsettings.json"), optional: false, reloadOnChange: true)
                       .Build();
 
-            var symbolsConfig = configuration.GetSection("Symbols").Get<List<Symbol>>();
+            List<Symbol>? symbolsConfig = configuration.GetSection("Symbols").Get<List<Symbol>>();
 
-            var serviceProvider = new ServiceCollection()
+            ServiceProvider serviceProvider = new ServiceCollection()
             .AddScoped<IInitialBalanceProvider, InitialBalanceProvider>(provider =>
             new InitialBalanceProvider(deposit))
             .AddScoped<ISymbolGeneratorService, SymbolGeneratorService>(provider =>
-                new SymbolGeneratorService(symbolsConfig))
+                new SymbolGeneratorService(symbolsConfig!))
             .AddScoped<ISlotMachineService, SlotMachineService>()
             .BuildServiceProvider();
 

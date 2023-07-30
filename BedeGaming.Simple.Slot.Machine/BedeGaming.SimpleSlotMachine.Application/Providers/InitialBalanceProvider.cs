@@ -4,7 +4,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Providers
 {
     public class InitialBalanceProvider : IInitialBalanceProvider
     {
-        private int _deposit;
+        private readonly int _deposit;
 
         public InitialBalanceProvider(int deposit)
         {

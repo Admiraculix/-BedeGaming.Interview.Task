@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BedeGaming.SimpleSlotMachine.ConsoleGame
 {
-    public class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Simplified Slot Machine!");
 
@@ -16,9 +16,9 @@ namespace BedeGaming.SimpleSlotMachine.ConsoleGame
             Console.Write("Please enter your stake amount: ");
             int stakeAmount = int.Parse(Console.ReadLine());
 
-            var serviceProvider = DependencyConfig.ConfigureDependencies(deposit);
+            ServiceProvider serviceProvider = DependencyConfig.ConfigureDependencies(deposit);
 
-            var slotMachine = serviceProvider.GetRequiredService<ISlotMachineService>();
+            ISlotMachineService slotMachine = serviceProvider.GetRequiredService<ISlotMachineService>();
             slotMachine.Play(stakeAmount);
         }
     }

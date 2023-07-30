@@ -6,14 +6,14 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
     public class SymbolGeneratorService : ISymbolGeneratorService
     {
         private readonly Random random;
-        private int totalProbability;
+        private readonly int totalProbability;
 
         public SymbolGeneratorService(List<Symbol> symbols)
         {
             random = new Random();
             Symbols = symbols;
 
-            foreach (var symbol in symbols)
+            foreach (Symbol symbol in symbols)
             {
                 totalProbability += symbol.Probability;
             }
@@ -26,7 +26,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             int randomValue = random.Next(1, totalProbability + 1);
             int cumulativeProbability = 0;
 
-            foreach (var symbol in Symbols)
+            foreach (Symbol symbol in Symbols)
             {
                 cumulativeProbability += symbol.Probability;
                 if (randomValue <= cumulativeProbability)
