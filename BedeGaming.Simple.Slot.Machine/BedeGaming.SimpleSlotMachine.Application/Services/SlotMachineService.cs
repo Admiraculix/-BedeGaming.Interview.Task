@@ -36,7 +36,10 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
                 return;
             }
 
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(Constant.SlotMachine.SpinResults);
+            Console.ResetColor();
+
             string[,] spinResult = new string[4, 3];
 
             for (int row = 0; row < 4; row++)
@@ -53,9 +56,10 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             double winAmount = CalculateWinAmount(spinResult, stakeAmount);
             Balance = Balance - stakeAmount + winAmount;
 
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(Constant.SlotMachine.YouWin(winAmount, Balance));
+            Console.ResetColor();
 
-            Console.Write(Constant.SlotMachine.StakeAmount);
             stakeAmount = _consoleInputReader.ReadValidInput<double>(Constant.SlotMachine.StakeAmount);
             Play(stakeAmount); // Play the next round
         }
@@ -66,7 +70,18 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             {
                 for (int col = 0; col < 3; col++)
                 {
-                    Console.Write(spinResult[row, col]);
+                    string symbolName = spinResult[row, col];
+                    Symbol symbol = _symbols!.Find(s => s.Name == symbolName);
+
+                    // Get the color corresponding to the symbol
+                    ConsoleColor symbolColor = symbol!.Color;
+
+                    // Change the text color temporarily and display the symbol
+                    Console.ForegroundColor = symbolColor;
+                    Console.Write(symbolName);
+
+                    // Reset the text color to the default
+                    Console.ResetColor();
                 }
                 Console.WriteLine();
             }

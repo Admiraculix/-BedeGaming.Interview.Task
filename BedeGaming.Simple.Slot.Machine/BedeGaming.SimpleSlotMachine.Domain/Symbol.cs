@@ -5,5 +5,6 @@
         public string Name { get; set; }
         public double Coefficient { get; set; }
         public int Probability { get; set; }
+        public ConsoleColor Color { get; set; }
     }
 }
