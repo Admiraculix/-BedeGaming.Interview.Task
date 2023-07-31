@@ -1,6 +1,8 @@
-﻿using BedeGaming.SimpleSlotMachine.Application.Interfaces;
+﻿using BedeGaming.SimpleSlotMachine.Application.Constants;
+using BedeGaming.SimpleSlotMachine.Application.Interfaces;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces.Providers;
 using BedeGaming.SimpleSlotMachine.Domain;
+using Consoles.Common.Interfaces;
 
 namespace BedeGaming.SimpleSlotMachine.Application.Services
 {
@@ -9,25 +11,32 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
         private readonly List<Symbol> _symbols;
         private readonly IInitialBalanceProvider _initialBalanceProvider;
         private readonly ISymbolGeneratorService _symbolGeneratorService;
-        private int _balance;
+        private readonly IConsoleInputReader _consoleInputReader;
 
-        public SlotMachineService(IInitialBalanceProvider initialBalanceProvider, ISymbolGeneratorService symbolGenerator)
+        public SlotMachineService(
+            IInitialBalanceProvider initialBalanceProvider,
+            ISymbolGeneratorService symbolGenerator,
+            IConsoleInputReader consoleInputReader)
         {
             _initialBalanceProvider = initialBalanceProvider;
-            _balance = _initialBalanceProvider.GetInitialBalance();
             _symbolGeneratorService = symbolGenerator;
+            _consoleInputReader = consoleInputReader;
+
+            Balance = _initialBalanceProvider.Deposit;
             _symbols = _symbolGeneratorService.Symbols;
         }
 
-        public void Play(int stakeAmount)
+        public double Balance { get; private set; }
+
+        public void Play(double stakeAmount)
         {
-            if (_balance <= 0)
+            if (Balance <= 0)
             {
-                Console.WriteLine("\nGame over! You have no balance left. Thank you for playing!");
+                Console.WriteLine(Constant.SlotMachine.GameOver);
                 return;
             }
 
-            Console.WriteLine("\nSpin Result:");
+            Console.WriteLine(Constant.SlotMachine.SpinResults);
             string[,] spinResult = new string[4, 3];
 
             for (int row = 0; row < 4; row++)
@@ -42,12 +51,12 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             DisplaySpinResult(spinResult);
 
             double winAmount = CalculateWinAmount(spinResult, stakeAmount);
-            _balance = _balance - stakeAmount + (int)winAmount;
+            Balance = Balance - stakeAmount + winAmount;
 
-            Console.WriteLine($"You won: {winAmount}, Current balance: {_balance}");
+            Console.WriteLine(Constant.SlotMachine.YouWin(winAmount, Balance));
 
-            Console.Write("Please enter your stake amount: ");
-            stakeAmount = int.Parse(Console.ReadLine());
+            Console.Write(Constant.SlotMachine.StakeAmount);
+            stakeAmount = _consoleInputReader.ReadValidInput<double>(Constant.SlotMachine.StakeAmount);
             Play(stakeAmount); // Play the next round
         }
 
@@ -63,7 +72,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             }
         }
 
-        private double CalculateWinAmount(string[,] spinResult, int stakeAmount)
+        private double CalculateWinAmount(string[,] spinResult, double stakeAmount)
         {
             double winAmount = 0;
 
@@ -90,5 +99,4 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             return winAmount;
         }
     }
-
 }

@@ -21,17 +21,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{67
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SimpleSlotMachine", "SimpleSlotMachine", "{76F967EA-8796-49FD-A2D6-CD78AEB71A40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Tests.Unit", "BedeGaming.SimpleSlotMachine.Tests.Unit\BedeGaming.SimpleSlotMachine.Tests.Unit.csproj", "{00DC6976-7829-483B-B350-044BD590FE6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BedeGaming.SimpleSlotMachine.Tests.Unit", "BedeGaming.SimpleSlotMachine.Tests.Unit\BedeGaming.SimpleSlotMachine.Tests.Unit.csproj", "{00DC6976-7829-483B-B350-044BD590FE6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Tests.Integration", "BedeGaming.SimpleSlotMachine.Tests.Integration\BedeGaming.SimpleSlotMachine.Tests.Integration.csproj", "{6891861C-9D44-428D-86F7-47E408F0FED7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BedeGaming.SimpleSlotMachine.Tests.Integration", "BedeGaming.SimpleSlotMachine.Tests.Integration\BedeGaming.SimpleSlotMachine.Tests.Integration.csproj", "{6891861C-9D44-428D-86F7-47E408F0FED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Tests.Architecture", "BedeGaming.SimpleSlotMachine.Tests.Architecture\BedeGaming.SimpleSlotMachine.Tests.Architecture.csproj", "{54DA95EE-FAF8-4FE0-9D14-2B36C672039B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BedeGaming.SimpleSlotMachine.Tests.Architecture", "BedeGaming.SimpleSlotMachine.Tests.Architecture\BedeGaming.SimpleSlotMachine.Tests.Architecture.csproj", "{54DA95EE-FAF8-4FE0-9D14-2B36C672039B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.ConsoleGame", "BedeGaming.SimpleSlotMachine.ConsoleGame\BedeGaming.SimpleSlotMachine.ConsoleGame.csproj", "{97B2B0E9-2469-40E5-BEE8-468C9140A77E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BedeGaming.SimpleSlotMachine.ConsoleGame", "BedeGaming.SimpleSlotMachine.ConsoleGame\BedeGaming.SimpleSlotMachine.ConsoleGame.csproj", "{97B2B0E9-2469-40E5-BEE8-468C9140A77E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Application", "BedeGaming.SimpleSlotMachine.Application\BedeGaming.SimpleSlotMachine.Application.csproj", "{C4F04788-2F49-4930-8AF7-B0160C0868D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BedeGaming.SimpleSlotMachine.Application", "BedeGaming.SimpleSlotMachine.Application\BedeGaming.SimpleSlotMachine.Application.csproj", "{C4F04788-2F49-4930-8AF7-B0160C0868D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimpleSlotMachine.Domain", "BedeGaming.SimpleSlotMachine.Domain\BedeGaming.SimpleSlotMachine.Domain.csproj", "{98657031-10CA-4EF1-A70C-FF48AA515AD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BedeGaming.SimpleSlotMachine.Domain", "BedeGaming.SimpleSlotMachine.Domain\BedeGaming.SimpleSlotMachine.Domain.csproj", "{98657031-10CA-4EF1-A70C-FF48AA515AD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consoles.Common", "Consoles.Common\Consoles.Common.csproj", "{64925725-97B8-44A7-A97D-F7ECB1A17DCC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Abstractions", "Abstractions", "{05168DF2-7D8A-481D-9584-6CCEAC9EF911}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,10 @@ Global
 		{98657031-10CA-4EF1-A70C-FF48AA515AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98657031-10CA-4EF1-A70C-FF48AA515AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98657031-10CA-4EF1-A70C-FF48AA515AD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64925725-97B8-44A7-A97D-F7ECB1A17DCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64925725-97B8-44A7-A97D-F7ECB1A17DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64925725-97B8-44A7-A97D-F7ECB1A17DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64925725-97B8-44A7-A97D-F7ECB1A17DCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +89,8 @@ Global
 		{97B2B0E9-2469-40E5-BEE8-468C9140A77E} = {C4B32596-82BF-4454-A456-0CAB4AC1B7BD}
 		{C4F04788-2F49-4930-8AF7-B0160C0868D4} = {A9DFC3E5-5779-4412-870B-26604CB318AE}
 		{98657031-10CA-4EF1-A70C-FF48AA515AD2} = {A9DFC3E5-5779-4412-870B-26604CB318AE}
+		{64925725-97B8-44A7-A97D-F7ECB1A17DCC} = {05168DF2-7D8A-481D-9584-6CCEAC9EF911}
+		{05168DF2-7D8A-481D-9584-6CCEAC9EF911} = {8E1C86BE-C06F-456C-8782-A570B500BB4A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {271B4863-19D8-4C67-AE35-56C292AA2464}

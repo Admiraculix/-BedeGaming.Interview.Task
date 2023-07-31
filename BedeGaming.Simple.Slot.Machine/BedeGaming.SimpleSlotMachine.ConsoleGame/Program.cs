@@ -1,24 +1,30 @@
-﻿using BedeGaming.SimpleSlotMachine.Application.Interfaces;
+﻿using BedeGaming.SimpleSlotMachine.Application.Constants;
+using BedeGaming.SimpleSlotMachine.Application.Interfaces;
+using BedeGaming.SimpleSlotMachine.Application.Interfaces.Providers;
 using BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations;
+using Consoles.Common.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BedeGaming.SimpleSlotMachine.ConsoleGame
 {
     public static class Program
     {
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Simplified Slot Machine!");
 
-            Console.Write("Please enter your initial deposit amount: ");
-            int deposit = int.Parse(Console.ReadLine());
+            ServiceProvider serviceProvider = DependencyConfig.ConfigureDependencies();
+            IConsoleInputReader consoleInputReader = serviceProvider.GetRequiredService<IConsoleInputReader>();
+            IInitialBalanceProvider initialBalanceProvider = serviceProvider.GetRequiredService<IInitialBalanceProvider>();
 
-            Console.Write("Please enter your stake amount: ");
-            int stakeAmount = int.Parse(Console.ReadLine());
+            // Read the initial deposit amount from the user
+            initialBalanceProvider.Deposit = consoleInputReader.ReadValidInput<double>(Constant.Balance.InitialDeposit);
 
-            ServiceProvider serviceProvider = DependencyConfig.ConfigureDependencies(deposit);
-
+            // Read the stake amount from the user
+            var stakeAmount = consoleInputReader.ReadValidInput<double>(Constant.SlotMachine.StakeAmount);
             ISlotMachineService slotMachine = serviceProvider.GetRequiredService<ISlotMachineService>();
+
+            // Start the slot machine game
             slotMachine.Play(stakeAmount);
         }
     }

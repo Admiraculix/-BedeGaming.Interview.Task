@@ -2,6 +2,6 @@
 {
     public interface ISlotMachineService
     {
-        void Play(int stakeAmount);
+        void Play(double stakeAmount);
     }
 }

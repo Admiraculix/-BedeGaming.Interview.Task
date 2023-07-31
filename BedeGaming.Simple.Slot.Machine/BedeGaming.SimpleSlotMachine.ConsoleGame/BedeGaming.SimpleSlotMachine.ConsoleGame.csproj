@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BedeGaming.SimpleSlotMachine.Application\BedeGaming.SimpleSlotMachine.Application.csproj" />
     <ProjectReference Include="..\BedeGaming.SimpleSlotMachine.Domain\BedeGaming.SimpleSlotMachine.Domain.csproj" />
+    <ProjectReference Include="..\Consoles.Common\Consoles.Common.csproj" />
   </ItemGroup>
 
 </Project>

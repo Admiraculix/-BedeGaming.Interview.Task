@@ -2,6 +2,6 @@
 {
     public interface IInitialBalanceProvider
     {
-        int GetInitialBalance();
+        double Deposit { get; set; }
     }
 }

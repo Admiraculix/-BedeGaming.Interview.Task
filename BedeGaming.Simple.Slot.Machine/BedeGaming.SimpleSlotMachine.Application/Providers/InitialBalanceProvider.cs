@@ -1,25 +1,44 @@
-﻿using BedeGaming.SimpleSlotMachine.Application.Interfaces.Providers;
+﻿using BedeGaming.SimpleSlotMachine.Application.Constants;
+using BedeGaming.SimpleSlotMachine.Application.Interfaces.Providers;
+using Consoles.Common.Interfaces;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace BedeGaming.SimpleSlotMachine.Application.Providers
 {
     public class InitialBalanceProvider : IInitialBalanceProvider
     {
-        private readonly int _deposit;
+        private readonly IValidator<double> _validator;
+        private readonly IConsoleInputReader _consoleInputReader;
+        private double _deposit;
 
-        public InitialBalanceProvider(int deposit)
+        public InitialBalanceProvider(IValidator<double> validator, IConsoleInputReader consoleInputReader)
         {
-            _deposit = deposit;
+            _validator = validator;
+            _consoleInputReader = consoleInputReader;
         }
 
-        public int GetInitialBalance()
+        public double Deposit
         {
-            return _deposit;
-        }
+            get => _deposit;
+            set
+            {
+                ValidationResult result = _validator.Validate(value);
 
-        public int GetInitialBalanceConsole()
-        {
-            Console.Write("Please enter your initial deposit amount: ");
-            return int.Parse(Console.ReadLine());
+                while (!result.IsValid)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        Console.WriteLine(error.ErrorMessage);
+                    }
+
+                    value = _consoleInputReader.ReadValidInput<double>(Constant.Balance.InitialDeposit);
+
+                    result = _validator.Validate(value);
+                }
+
+                _deposit = value;
+            }
         }
     }
 }
