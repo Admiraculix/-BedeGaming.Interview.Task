@@ -38,6 +38,5 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
 
             return null; // Default symbol (should never reach here)
         }
-
     }
 }
