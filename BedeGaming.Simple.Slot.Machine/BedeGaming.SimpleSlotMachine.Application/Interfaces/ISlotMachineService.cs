@@ -2,8 +2,8 @@
 {
     public interface ISlotMachineService
     {
-        public double Balance { get;}
+        public decimal Balance { get;}
 
-        void Play(double stakeAmount);
+        void Play(decimal stakeAmount);
     }
 }

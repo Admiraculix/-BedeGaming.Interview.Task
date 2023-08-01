@@ -36,9 +36,9 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             _dimensions = dimensions;
         }
 
-        public double Balance { get; private set; }
+        public decimal Balance { get; private set; }
 
-        public void Play(double stakeAmount)
+        public void Play(decimal stakeAmount)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(Messages.SlotMachine.SpinResults);
@@ -58,7 +58,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             DisplaySpinResult(spinResult);
             PromptingForValidStake(stakeAmount);
 
-            double winAmount = CalculateWinAmount(spinResult, stakeAmount);
+            decimal winAmount = CalculateWinAmount(spinResult, stakeAmount);
             Balance = Balance - stakeAmount + winAmount;
 
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -71,7 +71,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
                 return;
             }
 
-            stakeAmount = _consoleInputReader.ReadValidInput<double>(Messages.SlotMachine.StakeAmountPrompt);
+            stakeAmount = _consoleInputReader.ReadValidInput<decimal>(Messages.SlotMachine.StakeAmountPrompt);
             Play(stakeAmount); // Play the next round
         }
 
@@ -98,9 +98,9 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             }
         }
 
-        private double CalculateWinAmount(string[,] spinResult, double stakeAmount)
+        private decimal CalculateWinAmount(string[,] spinResult, decimal stakeAmount)
         {
-            double winAmount = 0;
+            decimal winAmount = 0;
 
             // Check for horizontal win combinations in each row
             for (int row = 0; row < _dimensions.SlotRows; row++)
@@ -123,16 +123,16 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
 
                 if (isWin)
                 {
-                    winAmount += coefficient * stakeAmount;
+                    winAmount += (decimal)coefficient * stakeAmount;
                 }
             }
 
             return winAmount;
         }
 
-        private void PromptingForValidStake(double stake)
+        private void PromptingForValidStake(decimal stake)
         {
-            var validationContext = new ValidationContext<double>(stake);
+            var validationContext = new ValidationContext<decimal>(stake);
             validationContext.SetSlotMachineService(this);
             ValidationResult result = _validator.Validate(validationContext);
 
@@ -143,8 +143,8 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
                     Console.WriteLine(error.ErrorMessage);
                 }
 
-                double newStake = _consoleInputReader.ReadValidInput<double>(Messages.SlotMachine.StakeAmountPrompt);
-                validationContext = new ValidationContext<double>(newStake);
+                decimal newStake = _consoleInputReader.ReadValidInput<decimal>(Messages.SlotMachine.StakeAmountPrompt);
+                validationContext = new ValidationContext<decimal>(newStake);
                 validationContext.SetSlotMachineService(this);
                 result = _validator.Validate(validationContext);
             }

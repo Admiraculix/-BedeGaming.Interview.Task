@@ -7,12 +7,12 @@ namespace BedeGaming.SimpleSlotMachine.Application.Extensions
     {
         private const string SlotMachineServiceKey = "SlotMachineService";
 
-        public static void SetSlotMachineService(this ValidationContext<double> context, SlotMachineService service)
+        public static void SetSlotMachineService(this ValidationContext<decimal> context, SlotMachineService service)
         {
             context.RootContextData[SlotMachineServiceKey] = service;
         }
 
-        public static SlotMachineService GetSlotMachineService(this ValidationContext<double> context)
+        public static SlotMachineService GetSlotMachineService(this ValidationContext<decimal> context)
         {
             return context.RootContextData.ContainsKey(SlotMachineServiceKey)
                 ? context.RootContextData[SlotMachineServiceKey] as SlotMachineService

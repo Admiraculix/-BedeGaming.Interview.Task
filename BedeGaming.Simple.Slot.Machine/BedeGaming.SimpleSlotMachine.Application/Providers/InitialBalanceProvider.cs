@@ -11,7 +11,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Providers
     {
         private readonly IDepositValidator _validator;
         private readonly IConsoleInputReader _consoleInputReader;
-        private double _deposit;
+        private decimal _deposit;
 
         public InitialBalanceProvider(IDepositValidator validator, IConsoleInputReader consoleInputReader)
         {
@@ -19,7 +19,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Providers
             _consoleInputReader = consoleInputReader;
         }
 
-        public double Deposit
+        public decimal Deposit
         {
             get => _deposit;
             set
@@ -33,7 +33,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Providers
                         Console.WriteLine(error.ErrorMessage);
                     }
 
-                    value = _consoleInputReader.ReadValidInput<double>(Messages.Balance.InitialDepositPrompt);
+                    value = _consoleInputReader.ReadValidInput<decimal>(Messages.Balance.InitialDepositPrompt);
 
                     result = _validator.Validate(value);
                 }

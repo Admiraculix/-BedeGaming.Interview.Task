@@ -2,7 +2,7 @@
 
 namespace BedeGaming.SimpleSlotMachine.Application.Interfaces.Validators
 {
-    public interface IStakeValidator : IValidator<double>
+    public interface IStakeValidator : IValidator<decimal>
     {
     }
 }

@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace BedeGaming.SimpleSlotMachine.Application.Validators
 {
-    public class StakeValidator : AbstractValidator<double>, IStakeValidator
+    public class StakeValidator : AbstractValidator<decimal>, IStakeValidator
     {
         public StakeValidator()
         {

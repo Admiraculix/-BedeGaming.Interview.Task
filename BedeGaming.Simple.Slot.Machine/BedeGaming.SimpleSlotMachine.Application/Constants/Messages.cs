@@ -14,7 +14,7 @@
         {
             public static string GameOver => "Game over! You have no balance left.Thank you for playing!";
             public static string SpinResults => "Spin Result:";
-            public static string YouWin(double winAmount, double balance) => $"You won: {winAmount}, Current balance: {balance}";
+            public static string YouWin(decimal winAmount, decimal balance) => $"You won: {winAmount}, Current balance: {balance}";
             public static string StakeAmountPrompt => "Please enter your stake amount: ";
         }
 

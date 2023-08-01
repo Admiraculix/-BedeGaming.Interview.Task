@@ -2,6 +2,6 @@
 {
     public interface IInitialBalanceProvider
     {
-        double Deposit { get; set; }
+        decimal Deposit { get; set; }
     }
 }
