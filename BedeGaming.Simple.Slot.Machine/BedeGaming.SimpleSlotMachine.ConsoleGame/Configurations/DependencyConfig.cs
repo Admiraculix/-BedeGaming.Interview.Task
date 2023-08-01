@@ -9,6 +9,7 @@ using Consoles.Common;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using BedeGaming.SimpleSlotMachine.Domains;
 
 namespace BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations
 {
@@ -21,6 +22,7 @@ namespace BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations
                       .Build();
 
             List<Symbol>? symbolsConfig = configuration.GetSection("Symbols").Get<List<Symbol>>();
+            Dimensions dimensions = configuration.GetSection("Dimensions").Get<Dimensions> ();
 
             ServiceProvider serviceProvider = new ServiceCollection()
             .AddScoped<IConsoleInputReader, ConsoleInputReader>()

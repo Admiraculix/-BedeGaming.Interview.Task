@@ -32,7 +32,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Providers
                         Console.WriteLine(error.ErrorMessage);
                     }
 
-                    value = _consoleInputReader.ReadValidInput<double>(Constant.Balance.InitialDeposit);
+                    value = _consoleInputReader.ReadValidInput<double>(Мessages.Balance.InitialDepositPrompt);
 
                     result = _validator.Validate(value);
                 }

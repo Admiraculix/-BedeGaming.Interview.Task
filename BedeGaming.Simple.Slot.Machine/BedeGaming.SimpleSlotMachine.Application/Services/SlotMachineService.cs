@@ -32,12 +32,12 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
         {
             if (Balance <= 0)
             {
-                Console.WriteLine(Constant.SlotMachine.GameOver);
+                Console.WriteLine(Мessages.SlotMachine.GameOver);
                 return;
             }
 
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(Constant.SlotMachine.SpinResults);
+            Console.WriteLine(Мessages.SlotMachine.SpinResults);
             Console.ResetColor();
 
             string[,] spinResult = new string[4, 3];
@@ -57,10 +57,10 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             Balance = Balance - stakeAmount + winAmount;
 
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(Constant.SlotMachine.YouWin(winAmount, Balance));
+            Console.WriteLine(Мessages.SlotMachine.YouWin(winAmount, Balance));
             Console.ResetColor();
 
-            stakeAmount = _consoleInputReader.ReadValidInput<double>(Constant.SlotMachine.StakeAmount);
+            stakeAmount = _consoleInputReader.ReadValidInput<double>(Мessages.SlotMachine.StakeAmountPrompt);
             Play(stakeAmount); // Play the next round
         }
 

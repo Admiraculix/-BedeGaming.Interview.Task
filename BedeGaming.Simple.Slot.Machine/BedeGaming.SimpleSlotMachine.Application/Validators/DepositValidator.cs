@@ -7,7 +7,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Validators
     {
         public DepositValidator()
         {
-            RuleFor(deposit => deposit).GreaterThan(0).WithMessage(Constant.Balance.DepositAmountValidation);
+            RuleFor(deposit => deposit).GreaterThan(0).WithMessage(Мessages.Balance.DepositAmoutShouldBeGreaterThanZero);
         }
     }
 }
