@@ -22,7 +22,7 @@ namespace BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations
                       .Build();
 
             List<Symbol>? symbolsConfig = configuration.GetSection("Symbols").Get<List<Symbol>>();
-            Dimensions dimensions = configuration.GetSection("Dimensions").Get<Dimensions> (); //TODO need to be passed to slot mashine service
+            Dimensions dimensionsConfig = configuration.GetSection("Dimensions").Get<Dimensions> (); //TODO need to be passed to slot mashine service
 
             ServiceProvider serviceProvider = new ServiceCollection()
             .AddScoped<IConsoleInputReader, ConsoleInputReader>()
@@ -39,7 +39,8 @@ namespace BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations
                     provider.GetRequiredService<IInitialBalanceProvider>(),
                     provider.GetRequiredService<ISymbolGeneratorService>(),
                     provider.GetRequiredService<IConsoleInputReader>(),
-                    provider.GetRequiredService<IStakeValidator>())
+                    provider.GetRequiredService<IStakeValidator>(),
+                    dimensionsConfig)
                 )
             .BuildServiceProvider();
 

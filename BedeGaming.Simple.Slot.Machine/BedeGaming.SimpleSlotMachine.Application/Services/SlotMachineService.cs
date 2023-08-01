@@ -4,6 +4,7 @@ using BedeGaming.SimpleSlotMachine.Application.Interfaces;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces.Providers;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces.Validators;
 using BedeGaming.SimpleSlotMachine.Domain;
+using BedeGaming.SimpleSlotMachine.Domains;
 using Consoles.Common.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
@@ -17,12 +18,13 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
         private readonly ISymbolGeneratorService _symbolGeneratorService;
         private readonly IConsoleInputReader _consoleInputReader;
         private readonly IStakeValidator _validator;
-
+        private readonly Dimensions _dimensions;
         public SlotMachineService(
             IInitialBalanceProvider initialBalanceProvider,
             ISymbolGeneratorService symbolGenerator,
             IConsoleInputReader consoleInputReader,
-            IStakeValidator validator)
+            IStakeValidator validator,
+            Dimensions dimensions)
         {
             _initialBalanceProvider = initialBalanceProvider;
             _symbolGeneratorService = symbolGenerator;
@@ -31,6 +33,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
 
             Balance = _initialBalanceProvider.Deposit;
             _symbols = _symbolGeneratorService.Symbols;
+            _dimensions = dimensions;
         }
 
         public double Balance { get; private set; }
@@ -41,11 +44,11 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             Console.WriteLine(Messages.SlotMachine.SpinResults);
             Console.ResetColor();
 
-            string[,] spinResult = new string[4, 3];
+            string[,] spinResult = new string[_dimensions.SlotRows, _dimensions.SlotColumns];
 
-            for (int row = 0; row < 4; row++)
+            for (int row = 0; row < _dimensions.SlotRows; row++)
             {
-                for (int col = 0; col < 3; col++)
+                for (int col = 0; col < _dimensions.SlotColumns; col++)
                 {
                     Symbol randomSymbol = _symbolGeneratorService.GetRandomSymbol();
                     spinResult[row, col] = randomSymbol.Name;
@@ -74,9 +77,9 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
 
         private void DisplaySpinResult(string[,] spinResult)
         {
-            for (int row = 0; row < 4; row++)
+            for (int row = 0; row < _dimensions.SlotRows; row++)
             {
-                for (int col = 0; col < 3; col++)
+                for (int col = 0; col < _dimensions.SlotColumns; col++)
                 {
                     string symbolName = spinResult[row, col];
                     Symbol symbol = _symbols!.Find(s => s.Name == symbolName);
@@ -99,23 +102,28 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
         {
             double winAmount = 0;
 
-            // Check for horizontal win combinations
-            for (int row = 0; row < 4; row++)
+            // Check for horizontal win combinations in each row
+            for (int row = 0; row < _dimensions.SlotRows; row++)
             {
-                if (spinResult[row, 0] == spinResult[row, 1] && spinResult[row, 1] == spinResult[row, 2])
+                bool isWin = true;
+                double coefficient = 0;
+
+                // Iterate through each column in the row
+                for (int col = 1; col < _dimensions.SlotColumns; col++)
                 {
-                    Symbol symbol = _symbols.Find(s => s.Name == spinResult[row, 0]);
-                    winAmount += symbol.Coefficient * stakeAmount;
+                    if (spinResult[row, col] != spinResult[row, col - 1] && spinResult[row, col] != "*")
+                    {
+                        isWin = false;
+                        break;
+                    }
+
+                    Symbol symbol = _symbols.Find(s => s.Name == spinResult[row, col]);
+                    coefficient += symbol.Coefficient;
                 }
-                else if (spinResult[row, 0] == "*" && spinResult[row, 1] == spinResult[row, 2])
+
+                if (isWin)
                 {
-                    Symbol symbol = _symbols.Find(s => s.Name == spinResult[row, 1]);
-                    winAmount += symbol.Coefficient * stakeAmount;
-                }
-                else if (spinResult[row, 2] == "*" && spinResult[row, 0] == spinResult[row, 1])
-                {
-                    Symbol symbol = _symbols.Find(s => s.Name == spinResult[row, 0]);
-                    winAmount += symbol.Coefficient * stakeAmount;
+                    winAmount += coefficient * stakeAmount;
                 }
             }
 
