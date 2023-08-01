@@ -2,7 +2,6 @@
 using BedeGaming.SimpleSlotMachine.Application.Interfaces.Providers;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces.Validators;
 using Consoles.Common.Interfaces;
-using FluentValidation;
 using FluentValidation.Results;
 
 namespace BedeGaming.SimpleSlotMachine.Application.Providers
