@@ -14,8 +14,6 @@ namespace BedeGaming.SimpleSlotMachine.Application.Validators
                  {
                      var slotMachineService = context.GetSlotMachineService();
                      var balance = slotMachineService.Balance;
-                     Console.WriteLine(balance);
-                     Console.WriteLine(stake);
                      return stake <= balance;
                  })
             .WithMessage(Messages.Balance.StakeCannotBeGraterThanBalance);

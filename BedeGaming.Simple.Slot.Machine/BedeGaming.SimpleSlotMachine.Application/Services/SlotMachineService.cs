@@ -2,6 +2,7 @@
 using BedeGaming.SimpleSlotMachine.Application.Extensions;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces.Providers;
+using BedeGaming.SimpleSlotMachine.Application.Interfaces.Validators;
 using BedeGaming.SimpleSlotMachine.Domain;
 using Consoles.Common.Interfaces;
 using FluentValidation;
@@ -15,13 +16,13 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
         private readonly IInitialBalanceProvider _initialBalanceProvider;
         private readonly ISymbolGeneratorService _symbolGeneratorService;
         private readonly IConsoleInputReader _consoleInputReader;
-        private readonly IValidator<double> _validator;
+        private readonly IStakeValidator _validator;
 
         public SlotMachineService(
             IInitialBalanceProvider initialBalanceProvider,
             ISymbolGeneratorService symbolGenerator,
             IConsoleInputReader consoleInputReader,
-            IValidator<double> validator)
+            IStakeValidator validator)
         {
             _initialBalanceProvider = initialBalanceProvider;
             _symbolGeneratorService = symbolGenerator;
@@ -36,14 +37,6 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
 
         public void Play(double stakeAmount)
         {
-            PromptingForValidStake(stakeAmount);
-
-            if (Balance <= 0)
-            {
-                Console.WriteLine(Messages.SlotMachine.GameOver);
-                return;
-            }
-
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(Messages.SlotMachine.SpinResults);
             Console.ResetColor();
@@ -60,6 +53,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             }
 
             DisplaySpinResult(spinResult);
+            PromptingForValidStake(stakeAmount);
 
             double winAmount = CalculateWinAmount(spinResult, stakeAmount);
             Balance = Balance - stakeAmount + winAmount;
@@ -67,6 +61,12 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(Messages.SlotMachine.YouWin(winAmount, Balance));
             Console.ResetColor();
+
+            if (Balance <= 0)
+            {
+                Console.WriteLine(Messages.SlotMachine.GameOver);
+                return;
+            }
 
             stakeAmount = _consoleInputReader.ReadValidInput<double>(Messages.SlotMachine.StakeAmountPrompt);
             Play(stakeAmount); // Play the next round
