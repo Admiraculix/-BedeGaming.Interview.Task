@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace BedeGaming.SimpleSlotMachine.Application.Validators
 {
-    public class DepositValidator : AbstractValidator<double>
+    public class DepositValidator : AbstractValidator<double>, IDepositValidator
     {
         public DepositValidator()
         {

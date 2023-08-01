@@ -6,6 +6,7 @@
         {
             public static string InitialDepositPrompt => "Please enter your initial deposit amount: ";
             public static string DepositAmountShouldBeGreaterThanZero => "Deposit amount must be greater than 0.";
+            public static string StakeAmountShouldBeGreaterThanZero => "Stake amount must be greater than 0.";
             public static string StakeCannotBeGraterThanBalance => "Stake amount cannot be greater than the balance amount.";
         }
 

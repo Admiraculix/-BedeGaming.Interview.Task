@@ -1,8 +1,11 @@
 ﻿using BedeGaming.SimpleSlotMachine.Application.Constants;
+using BedeGaming.SimpleSlotMachine.Application.Extensions;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces.Providers;
 using BedeGaming.SimpleSlotMachine.Domain;
 using Consoles.Common.Interfaces;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace BedeGaming.SimpleSlotMachine.Application.Services
 {
@@ -12,15 +15,18 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
         private readonly IInitialBalanceProvider _initialBalanceProvider;
         private readonly ISymbolGeneratorService _symbolGeneratorService;
         private readonly IConsoleInputReader _consoleInputReader;
+        private readonly IValidator<double> _validator;
 
         public SlotMachineService(
             IInitialBalanceProvider initialBalanceProvider,
             ISymbolGeneratorService symbolGenerator,
-            IConsoleInputReader consoleInputReader)
+            IConsoleInputReader consoleInputReader,
+            IValidator<double> validator)
         {
             _initialBalanceProvider = initialBalanceProvider;
             _symbolGeneratorService = symbolGenerator;
             _consoleInputReader = consoleInputReader;
+            _validator = validator;
 
             Balance = _initialBalanceProvider.Deposit;
             _symbols = _symbolGeneratorService.Symbols;
@@ -30,6 +36,8 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
 
         public void Play(double stakeAmount)
         {
+            PromptingForValidStake(stakeAmount);
+
             if (Balance <= 0)
             {
                 Console.WriteLine(Messages.SlotMachine.GameOver);
@@ -112,6 +120,26 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             }
 
             return winAmount;
+        }
+
+        private void PromptingForValidStake(double stake)
+        {
+            var validationContext = new ValidationContext<double>(stake);
+            validationContext.SetSlotMachineService(this);
+            ValidationResult result = _validator.Validate(validationContext);
+
+            while (!result.IsValid)
+            {
+                foreach (var error in result.Errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+
+                double newStake = _consoleInputReader.ReadValidInput<double>(Messages.SlotMachine.StakeAmountPrompt);
+                validationContext = new ValidationContext<double>(newStake);
+                validationContext.SetSlotMachineService(this);
+                result = _validator.Validate(validationContext);
+            }
         }
     }
 }

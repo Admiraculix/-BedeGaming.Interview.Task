@@ -1,15 +1,15 @@
 ﻿using BedeGaming.SimpleSlotMachine.Application.Interfaces;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces.Providers;
+using BedeGaming.SimpleSlotMachine.Application.Interfaces.Validators;
 using BedeGaming.SimpleSlotMachine.Application.Providers;
 using BedeGaming.SimpleSlotMachine.Application.Services;
 using BedeGaming.SimpleSlotMachine.Application.Validators;
 using BedeGaming.SimpleSlotMachine.Domain;
-using Consoles.Common.Interfaces;
+using BedeGaming.SimpleSlotMachine.Domains;
 using Consoles.Common;
-using FluentValidation;
+using Consoles.Common.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using BedeGaming.SimpleSlotMachine.Domains;
 
 namespace BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations
 {
@@ -22,18 +22,25 @@ namespace BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations
                       .Build();
 
             List<Symbol>? symbolsConfig = configuration.GetSection("Symbols").Get<List<Symbol>>();
-            Dimensions dimensions = configuration.GetSection("Dimensions").Get<Dimensions> ();
+            Dimensions dimensions = configuration.GetSection("Dimensions").Get<Dimensions> (); //TODO need to be passed to slot mashine service
 
             ServiceProvider serviceProvider = new ServiceCollection()
             .AddScoped<IConsoleInputReader, ConsoleInputReader>()
-            .AddScoped<IValidator<double>, DepositValidator>()
+            .AddScoped<IDepositValidator, DepositValidator>()
+            .AddScoped<IStakeValidator, StakeValidator>()
             .AddScoped<IInitialBalanceProvider, InitialBalanceProvider>(provider =>
                 new InitialBalanceProvider(
-                provider.GetRequiredService<IValidator<double>>(),
+                provider.GetRequiredService<IDepositValidator>(),
                 provider.GetRequiredService<IConsoleInputReader>()))
             .AddScoped<ISymbolGeneratorService, SymbolGeneratorService>(provider =>
                 new SymbolGeneratorService(symbolsConfig!))
-            .AddScoped<ISlotMachineService, SlotMachineService>()
+            .AddScoped<ISlotMachineService, SlotMachineService>(provider =>
+                new SlotMachineService(
+                    provider.GetRequiredService<IInitialBalanceProvider>(),
+                    provider.GetRequiredService<ISymbolGeneratorService>(),
+                    provider.GetRequiredService<IConsoleInputReader>(),
+                    provider.GetRequiredService<IStakeValidator>())
+                )
             .BuildServiceProvider();
 
             return serviceProvider;
