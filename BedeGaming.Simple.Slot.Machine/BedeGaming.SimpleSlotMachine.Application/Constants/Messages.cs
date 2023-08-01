@@ -1,12 +1,12 @@
 ﻿namespace BedeGaming.SimpleSlotMachine.Application.Constants
 {
-    public static class Мessages
+    public static class Messages
     {
         public static class Balance
         {
             public static string InitialDepositPrompt => "Please enter your initial deposit amount: ";
-
-            public static string DepositAmoutShouldBeGreaterThanZero => "Deposit amount must be greater than 0.";
+            public static string DepositAmountShouldBeGreaterThanZero => "Deposit amount must be greater than 0.";
+            public static string StakeCannotBeGraterThanBalance => "Stake amount cannot be greater than the balance amount.";
         }
 
         public static class SlotMachine
