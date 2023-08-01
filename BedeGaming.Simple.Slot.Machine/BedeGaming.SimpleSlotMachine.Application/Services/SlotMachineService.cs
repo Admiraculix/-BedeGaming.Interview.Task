@@ -40,6 +40,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
 
         public void Play(decimal stakeAmount)
         {
+            stakeAmount = Math.Round(stakeAmount, 2);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(Messages.SlotMachine.SpinResults);
             Console.ResetColor();
@@ -59,7 +60,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
             PromptingForValidStake(stakeAmount);
 
             decimal winAmount = CalculateWinAmount(spinResult, stakeAmount);
-            Balance = Balance - stakeAmount + winAmount;
+            Balance = Math.Round(Balance - stakeAmount + winAmount, 2);
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(Messages.SlotMachine.YouWin(winAmount, Balance));
@@ -71,7 +72,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
                 return;
             }
 
-            stakeAmount = _consoleInputReader.ReadValidInput<decimal>(Messages.SlotMachine.StakeAmountPrompt);
+            stakeAmount = Math.Round(_consoleInputReader.ReadValidInput<decimal>(Messages.SlotMachine.StakeAmountPrompt), 2);
             Play(stakeAmount); // Play the next round
         }
 
@@ -127,7 +128,7 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
                 }
             }
 
-            return winAmount;
+            return Math.Round(winAmount, 2);
         }
 
         private void PromptingForValidStake(decimal stake)

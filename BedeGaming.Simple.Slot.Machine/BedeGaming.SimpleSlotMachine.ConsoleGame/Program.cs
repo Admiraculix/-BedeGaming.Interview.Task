@@ -18,10 +18,10 @@ namespace BedeGaming.SimpleSlotMachine.ConsoleGame
             IInitialBalanceProvider initialBalanceProvider = serviceProvider.GetRequiredService<IInitialBalanceProvider>();
 
             // Read the initial deposit amount from the user
-            initialBalanceProvider.Deposit = consoleInputReader.ReadValidInput<decimal>(Messages.Balance.InitialDepositPrompt);
+            initialBalanceProvider.Deposit = Math.Round(consoleInputReader.ReadValidInput<decimal>(Messages.Balance.InitialDepositPrompt), 2);
 
             // Read the stake amount from the user
-            var stakeAmount = consoleInputReader.ReadValidInput<decimal>(Messages.SlotMachine.StakeAmountPrompt);
+            var stakeAmount = Math.Round(consoleInputReader.ReadValidInput<decimal>(Messages.SlotMachine.StakeAmountPrompt), 2);
             ISlotMachineService slotMachine = serviceProvider.GetRequiredService<ISlotMachineService>();
 
             // Start the slot machine game
