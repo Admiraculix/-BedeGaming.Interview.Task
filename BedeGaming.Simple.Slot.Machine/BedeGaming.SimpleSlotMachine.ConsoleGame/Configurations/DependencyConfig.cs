@@ -5,7 +5,6 @@ using BedeGaming.SimpleSlotMachine.Application.Providers;
 using BedeGaming.SimpleSlotMachine.Application.Services;
 using BedeGaming.SimpleSlotMachine.Application.Validators;
 using BedeGaming.SimpleSlotMachine.Domain;
-using BedeGaming.SimpleSlotMachine.Domains;
 using Consoles.Common;
 using Consoles.Common.Interfaces;
 using Microsoft.Extensions.Configuration;

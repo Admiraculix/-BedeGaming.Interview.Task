@@ -4,7 +4,6 @@ using BedeGaming.SimpleSlotMachine.Application.Interfaces;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces.Providers;
 using BedeGaming.SimpleSlotMachine.Application.Interfaces.Validators;
 using BedeGaming.SimpleSlotMachine.Domain;
-using BedeGaming.SimpleSlotMachine.Domains;
 using Consoles.Common.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;

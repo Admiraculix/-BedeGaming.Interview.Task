@@ -1,4 +1,4 @@
-﻿namespace BedeGaming.SimpleSlotMachine.Domains
+﻿namespace BedeGaming.SimpleSlotMachine.Domain
 {
     public class Dimensions
     {
