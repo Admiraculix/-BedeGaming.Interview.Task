@@ -5,7 +5,7 @@ namespace Consoles.Common
 {
     public class ConsoleInputReader : IConsoleInputReader
     {
-        private readonly string _invalidInput = "Invalid input. Please enter a valid value of the specified type.";
+        private const string InvalidInput = "Invalid input. Please enter a valid value of the specified type.";
 
         public T ReadValidInput<T>(string message) where T : struct
         {
@@ -20,7 +20,7 @@ namespace Consoles.Common
 
                 if (!isValidInput)
                 {
-                    Console.WriteLine(_invalidInput);
+                    Console.WriteLine(InvalidInput);
                 }
 
             } while (!isValidInput);

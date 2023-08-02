@@ -31,7 +31,6 @@ namespace BedeGaming.SimpleSlotMachine.Application.Services
                 cumulativeProbability += symbol.Probability;
                 if (randomValue <= cumulativeProbability)
                 {
-                    //Console.WriteLine($"CP: {cumulativeProbability},  Ran: {randomValue}");
                     return symbol;
                 }
             }

@@ -12,8 +12,8 @@ namespace Consoles.Common.Interfaces
         /// <para>MyEnum customEnum = inputReader.ReadValidInput<MyEnum>("Please enter a value for the custom enum: ")</para>;
         /// </summary>
         /// <typeparam name="T">Can be int, decimal, DateTime, enum</typeparam>
-        /// <param name="message"></param>
-        /// <returns></returns>
+        /// <param name="message">Prompt message<param>
+        /// <returns>Struct type</returns>
         public T ReadValidInput<T>(string message) where T : struct;
     }
 }

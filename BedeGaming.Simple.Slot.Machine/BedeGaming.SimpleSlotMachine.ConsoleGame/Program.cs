@@ -9,9 +9,11 @@ namespace BedeGaming.SimpleSlotMachine.ConsoleGame
 {
     public static class Program
     {
+        private const string Welcome = "Welcome to the Simplified Slot Machine!";
+
         public static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the Simplified Slot Machine!");
+            Console.WriteLine(Welcome);
 
             ServiceProvider serviceProvider = DependencyConfig.ConfigureDependencies();
             IConsoleInputReader consoleInputReader = serviceProvider.GetRequiredService<IConsoleInputReader>();

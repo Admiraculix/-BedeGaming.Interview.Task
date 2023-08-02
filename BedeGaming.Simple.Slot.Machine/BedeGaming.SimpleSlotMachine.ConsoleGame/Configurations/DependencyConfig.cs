@@ -21,7 +21,7 @@ namespace BedeGaming.SimpleSlotMachine.ConsoleGame.Configurations
                       .Build();
 
             List<Symbol>? symbolsConfig = configuration.GetSection("Symbols").Get<List<Symbol>>();
-            Dimensions dimensionsConfig = configuration.GetSection("Dimensions").Get<Dimensions> (); //TODO need to be passed to slot mashine service
+            Dimensions dimensionsConfig = configuration.GetSection("Dimensions").Get<Dimensions> ();
 
             ServiceProvider serviceProvider = new ServiceCollection()
             .AddScoped<IConsoleInputReader, ConsoleInputReader>()

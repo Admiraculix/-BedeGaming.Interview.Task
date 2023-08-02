@@ -17,10 +17,5 @@
             public static string YouWin(decimal winAmount, decimal balance) => $"You won: {winAmount}, Current balance: {balance}";
             public static string StakeAmountPrompt => "Please enter your stake amount: ";
         }
-
-        public static class SymbolGenerator
-        {
-
-        }
     }
 }
