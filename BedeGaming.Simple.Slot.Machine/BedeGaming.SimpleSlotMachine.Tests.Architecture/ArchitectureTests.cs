@@ -9,7 +9,6 @@ namespace BedeGaming.SimpleSlotMachine.Tests.Architecture
         private const string ApplicationNamespace = "BedeGaming.SimpleSlotMachine.Application";
         private const string DomainNamespace = "BedeGaming.SimpleSlotMachine.Domain";
         private const string PresentationNamespace = "BedeGaming.SimpleSlotMachine.ConsoleGame";
-        private const string InfrastuctureNamespace = "N/A";
         private const string SharedNamespace = "Consoles.Common";
 
         [Fact]
@@ -49,28 +48,6 @@ namespace BedeGaming.SimpleSlotMachine.Tests.Architecture
             var testResult = Types
             .InAssembly(assembly)
             .ShouldNot()
-            .HaveDependencyOnAll(otherProjects)
-            .GetResult();
-
-            //Assert
-            testResult.IsSuccessful.Should().BeTrue();
-        }
-
-        //?TODO: remove skip when you have infrastructure layers
-        [Fact(Skip = "When we have implemented Infrastructure layer, this should work!")]
-        public void Presentation_Should_Not_HaveDependencyOnOtherProjects()
-        {
-            // Arrange
-            Assembly assembly = Assembly.Load(PresentationNamespace);
-
-            var otherProjects = new[] {
-                InfrastuctureNamespace,
-            };
-
-            // Act
-            var testResult = Types
-            .InAssembly(assembly)
-            .Should()
             .HaveDependencyOnAll(otherProjects)
             .GetResult();
 
