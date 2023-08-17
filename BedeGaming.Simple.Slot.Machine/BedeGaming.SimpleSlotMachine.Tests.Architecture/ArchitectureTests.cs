@@ -79,7 +79,7 @@ namespace BedeGaming.SimpleSlotMachine.Tests.Architecture
         }
 
         [Fact]
-        public void Handlers_Should_Have_DependencyOnDomain()
+        public void Services_Should_Have_DependencyOnDomain()
         {
             // Arrange
             Assembly assembly = Assembly.Load(ApplicationNamespace);
